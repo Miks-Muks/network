@@ -1,0 +1,15 @@
+{%extends 'network/_base.html'%}
+{%block content%}
+<main class="container">
+
+  <div class="container bg-info"><h2><b>Создавайте темы кайфа</b></h2></div>
+  {%if form.error%}
+  <h1>{{error}}</h1>
+  {%endif%}
+  <form class="form-control" action="{%url 'network:create'%}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+  {{form.as_p}}
+  <button type="submit" class="btn btn-primary btn-block">Создать</button>
+  </form>
+</main>
+{%endblock%}
