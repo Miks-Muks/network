@@ -8,65 +8,72 @@
                     <div class="card single_post">
                         <div class="body">
                             <div class="img-post">
-                                <img class="d-block img-fluid" width="500" height="60" src="{{topic.photo.url}}" alt="First slide">
+                                <img class="d-block img-fluid" width="500" height="60" src="{{topic.photo.url}}"
+                                     alt="First slide">
                             </div>
                             <h3><b>{{topic.title}}</b></h3>
                             <p>{{topic.info}}</p>
+
                         </div>
                     </div>
                     <div class="card">
-                            <div class="header">
-                                <h2>Comments: {{commets.count}}</h2>
-                            </div>
-                            <div class="body">
-                                <ul class="comment-reply list-unstyled">
+                        <div class="header">
+                            <h2>Comments: {{commets.count}}</h2>
+                        </div>
+                        <div class="body">
+                            <ul class="comment-reply list-unstyled">
 
-                                    {%for comment in commets%}
+                                {%for comment in commets%}
 
-                                    <li class="row clearfix">
-                                        <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Awesome Image"></div>
-                                        <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                            <h5 class="m-b-0"></h5>
-                                            <p>{{comment.comment}}</p>
-                                            <ul class="list-inline">
-                                                <li><a >{{comment.date}}</a></li>
+                                <li class="row clearfix">
+                                    <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail"
+                                                                              src="https://bootdey.com/img/Content/avatar/avatar4.png"
+                                                                              alt="Awesome Image"></div>
+                                    <div class="text-box col-md-10 col-8 p-l-0 p-r0">
+                                        {% for user in comment.user.all %}
+                                        <h5 class="m-b-0">{{ user.username }}</h5>
+                                        {% endfor %}
+                                        <p>{{comment.comment}}</p>
+                                        <ul class="list-inline">
+                                            <li><a>{{comment.date}}</a></li>
 
-                                            </ul>
+                                        </ul>
+                                    </div>
+                                </li>
+                                {%endfor%}
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="header">
+                            <h2>Оставьте своё мнение по поводу <small>этого кайфа</small></h2>
+                        </div>
+                        <div class="body">
+                            <div class="comment-form">
+                                <form class="row clearfix" action="{%url 'network:comment_create' topic.pk%}"
+                                      method="post">
+                                    {%csrf_token%}
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            {{form}}
                                         </div>
-                                    </li>
-                                    {%endfor%}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
 
-                                </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+
+                                        </div>
+                                        <button type="submit" class="btn btn-block btn-primary">SUBMIT</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="header">
-                                <h2>Оставьте своё мнение по поводу <small>этого кайфа</small></h2>
-                            </div>
-                            <div class="body">
-                                <div class="comment-form">
-                                    <form class="row clearfix" action="{%url 'network:comment_create' topic.pk%}" method="post">
-                                        {%csrf_token%}
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                {{form}}
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-
-                                            </div>
-                                            <button type="submit" class="btn btn-block btn-primary">SUBMIT</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-4 col-md-12 right-box">
                     <div class="card">
@@ -88,12 +95,11 @@
                     </div>
 
 
-
-                    </div>
                 </div>
             </div>
-
         </div>
+
+    </div>
     </div>
 
 </main>

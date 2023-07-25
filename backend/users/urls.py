@@ -8,6 +8,8 @@ from .views import (
     logout_view,
     AddedPhotoView,
     FollowerView,
+    AddPhotoView,
+    LinksView,
 )
 
 app_name = 'users'
@@ -19,5 +21,7 @@ urlpatterns = [
     path("sign out", logout_view, name='log'),
     path("photo", AddedPhotoView.as_view(), name='photo'),
     path("followers", FollowerView.as_view(), name='followers'),
+    path("add photo", AddPhotoView.as_view(), name='add_photo'),
+    path("add links", LinksView.as_view(), name='add_links'),
 
 ]

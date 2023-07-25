@@ -8,8 +8,9 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="/" class="nav-link px-2 link-secondary">База</a></li>
-          <li><a href="{%url 'network:topics'%}" class="nav-link px-2 link-body-emphasis">Темы кайфа</a></li>
+          <li><a href="{%url 'network:topics'%}" class="nav-link px-2 link-body-emphasis">Темы </a></li>
           <li><a href="{%url 'users:followers'%}" class="nav-link px-2 link-body-emphasis">Последователи</a></li>
+          <li><a href="{%url 'actions:list'%}" class="nav-link px-2 link-body-emphasis">Журнал</a></li>
 
         </ul>
 
@@ -24,7 +25,7 @@
           {%if user.is_authenticated%}
           <ul class="dropdown-menu text-small" style="">
             <li><a class="dropdown-item" href="{%url 'network:create'%}">New topic</a></li>
-            <li><a class="dropdown-item" href="">Messeges</a></li>
+            <li><a class="dropdown-item" href="{%url 'chat:rooms'%}">Messeges</a></li>
             <li><a class="dropdown-item" href="{% url 'users:profile'%} ">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{%url 'users:log'%}">Sign out</a></li>

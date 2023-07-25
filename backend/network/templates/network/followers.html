@@ -1,64 +1,102 @@
 {%extends 'network/_base.html'%}
 {%block content%}
-<main class="container-fluid">
-    <aside class="flex">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4">Sidebar</span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-          Home
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-          Dashboard
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-          Orders
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-          Products
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-          Customers
-        </a>
-      </li>
-    </ul>
-    <hr>
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
-  </div>
-    </aside>
 
+<main class="container col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <article class="container flex">
       <h1> Followers</h1>
+      <div class="widget">
+                    <div class="widget-title widget-collapse">
+                        <h6>Gender</h6>
+                        <a class="ml-auto" data-toggle="collapse" href="#gender" role="button" aria-expanded="false" aria-controls="gender"><i class="fas fa-chevron-down"></i></a>
+                    </div>
+                    <div class="collapse show" id="gender">
+                        <div class="widget-content">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="gender1">
+                                <label class="custom-control-label" for="gender1">Male</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="gender2">
+                                <label class="custom-control-label" for="gender2">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title widget-collapse">
+                        <h6>Qualification</h6>
+                        <a class="ml-auto" data-toggle="collapse" href="#qualification" role="button" aria-expanded="false" aria-controls="qualification"> <i class="fas fa-chevron-down"></i></a>
+                    </div>
+                    <div class="collapse show" id="qualification">
+                        <div class="widget-content">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="qualification1">
+                                <label class="custom-control-label" for="qualification1">Matriculation</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="qualification2">
+                                <label class="custom-control-label" for="qualification2">Intermediate</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="qualification3">
+                                <label class="custom-control-label" for="qualification3">Graduate</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget border-0">
+                    <div class="widget-add">
+                        <img class="img-fluid" src="images/add-banner.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h6 class="mb-0">Showing 1-10 of <span class="text-primary">28 Candidates</span></h6>
+                </div>
+            </div>
+            <div class="job-filter mb-4 d-sm-flex align-items-center">
+                <div class="job-alert-bt"> <a class="btn btn-md btn-dark" href="#"><i class="fa fa-envelope"></i>Get job alert </a> </div>
+                <div class="job-shortby ml-sm-auto d-flex align-items-center">
+                    <form class="form-inline">
+                        <div class="form-group mb-0">
+                            <label class="justify-content-start mr-2">Sort by :</label>
+                            <div class="short-by">
+                                <select class="form-control basic-select select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                    <option data-select2-id="3">Newest</option>
+                                    <option>Oldest</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="candidate-list candidate-grid">
+                        <div class="candidate-list-image">
+                            <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                        </div>
+                        <div class="candidate-list-details">
+                            <div class="candidate-list-info">
+                                <div class="candidate-list-title">
+                                    <h5><a href="candidate-detail.html">Rafael Briggs</a></h5>
+                                </div>
+                                <div class="candidate-list-option">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-filter pr-1"></i>Recruitment Consultancy</li>
+                                        <li><i class="fas fa-map-marker-alt pr-1"></i>Haines City, FL 33844</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="candidate-list-favourite-time">
+                                <a class="candidate-list-favourite order-2" href="#"><i class="far fa-heart"></i></a>
+                                <span class="candidate-list-time order-1"><i class="far fa-clock pr-1"></i>1M ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
     </article>
 </main>
 {%endblock%}

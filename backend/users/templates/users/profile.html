@@ -25,16 +25,12 @@
           <div class="p-4 text-black" style="background-color: #f8f9fa;">
             <div class="d-flex justify-content-end text-center py-1">
               <div>
-                <p class="mb-1 h5">253</p>
+                <p class="mb-1 h5">{{added_photo.count}}</p>
                 <p class="small text-muted mb-0">Photos</p>
               </div>
               <div class="px-3">
                 <p class="mb-1 h5">1026</p>
                 <p class="small text-muted mb-0">Followers</p>
-              </div>
-              <div>
-                <p class="mb-1 h5">478</p>
-                <p class="small text-muted mb-0">Following</p>
               </div>
             </div>
           </div>
@@ -43,13 +39,23 @@
               <p class="lead fw-normal mb-1">About</p>
               <div class="p-4" style="background-color: #f8f9fa;">
                 <p class="font-italic mb-1">{{profile.about}}</p>
+                  <b>Ссылки на контакты:</b>
+                  <ul class="list-group">
+                      {%for link in links%}
+                      <li class="list-group-item"><a href="{{link.link}}">{{link.link}}</a></li>
+                      {%endfor%}
+                  </ul>
 
               </div>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4">
               <p class="lead fw-normal mb-0">Recent photos</p>
               <p class="mb-0"><a href="{%url 'users:photo'%}" class="text-muted">Show all</a></p>
+                {%if user.is_authenticated%}
+              <p class="mb-0"><a href="{%url 'users:add_photo'%}" class="text-muted">Add photo</a></p>
+              <p class=""><a href="{%url 'users:add_links'%}" class="text-muted">ADd links</a></p>
             </div>
+              {%endif%}
             <div class="row g-2">
                 {%for a in added_photo%}
               <div class="col mb-2">

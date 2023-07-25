@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, View
 from django.utils import timezone
 
-
-
 from .models import TopicKaif, CommentTopic
 from users.models import Profile
 from .forms import CommentForm, TopicForm
+
+from log_actions.service import ActionsCreatorPost
 
 
 # Create your views here.
@@ -32,7 +32,7 @@ class TopicDetail(DetailView):
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         context["topics"] = TopicKaif.objects.all()
-        context["commets"] = CommentTopic.objects.filter(topic=self.kwargs['pk'])
+        context["commets"] = CommentTopic.objects.prefetch_related('user').filter(topic=self.kwargs['pk'])
         context['form'] = CommentForm
 
         return context
@@ -49,9 +49,13 @@ class TopicCreate(View):
             topic = form.save(commit=False)
             topic.user = request.user
             topic.save()
+            log = ActionsCreatorPost()
+            log.create(request)
+
+
             return redirect('network:topics')
         else:
-            return render(request,'network/topic_create.html', {'form': form})
+            return render(request, 'network/topic_create.html', {'form': form})
 
 
 class CommentCreate(View):
@@ -60,9 +64,14 @@ class CommentCreate(View):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.comment = form.cleaned_data['comment']
-            user = request.user
-            comment.user_set = user
             comment.date = timezone.now()
             comment.topic = TopicKaif.objects.get(pk=pk_topic)
             comment.save()
-            return redirect('network:topics', )
+            user = request.user
+            comment.user.add(user)
+            comment.save()
+            return redirect('network:detail', pk=self.kwargs['pk_topic'])
+
+
+class CheckView(TemplateView):
+    template_name = 'network/check.html'
